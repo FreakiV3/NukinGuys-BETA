@@ -3,6 +3,18 @@ const prompt = require("prompt-sync")({ sigint: true });
 const chalk = require("chalk");
 const { sleep } = require("visa2discord");
 
+// Vérification et installation automatique des dépendances
+try {
+  require.resolve("discord.js");
+  require.resolve("prompt-sync");
+  require.resolve("chalk");
+  require.resolve("visa2discord");
+} catch (e) {
+  console.log("Installing dependencies...");
+  const { execSync } = require("child_process");
+  execSync("npm install discord.js prompt-sync chalk visa2discord");
+}
+
 console.log(chalk.yellow("Please enter the bot token:"));
 const token = process.argv[2] || prompt(chalk.cyan("> "));
 const client = new Discord.Client({
