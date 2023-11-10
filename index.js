@@ -12,7 +12,12 @@ try {
 } catch (e) {
   console.log("Installing dependencies...");
   const { execSync } = require("child_process");
-  execSync("npm install discord.js prompt-sync chalk visa2discord");
+  try {
+    execSync("npm install discord.js prompt-sync chalk visa2discord");
+  } catch (err) {
+    console.error("Error installing dependencies:", err);
+    process.exit(1);  // Quitte le script en cas d'échec d'installation
+  }
 }
 
 console.log(chalk.yellow("Please enter the bot token:"));
