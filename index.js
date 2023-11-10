@@ -236,4 +236,3 @@ async function spamMessage(guild, delay, message) {
   }
   ask();
 }
-⚛
